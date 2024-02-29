@@ -26,7 +26,7 @@ public class User {
     @GET
     public Response getUserProfile(@HeaderParam("authtoken") String tokenString,@Context HttpHeaders header){
         UserDTO user = null;
-        String userId = "US0001";
+        String userId = "US0001"; //Sửa lại chổ này nha Thức ơi
         user = userDao.getUserProfile(userId);
         return user != null ?
                 Response.ok(user, MediaType.APPLICATION_JSON).build():

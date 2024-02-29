@@ -18,7 +18,7 @@ public class Artwork {
     @Path("favorite")
     public Response getFavoriteArtwork(@HeaderParam("authtoken") String tokenString){
         List<ArtworkDTO> favoriteArtwork = new ArrayList<>();
-        String userId = "US0001";
+        String userId = "US0001"; //Sửa lại chổ này nha Thức ơi
         favoriteArtwork = artworkDAO.getFavoriteArtwork(userId);
         return !favoriteArtwork.isEmpty() ?
                 Response.ok(favoriteArtwork, MediaType.APPLICATION_JSON).build():

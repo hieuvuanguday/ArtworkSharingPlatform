@@ -26,7 +26,7 @@ public class Following {
     @Path("following")
     public Response getFollowing(@HeaderParam("authtoken") String tokenString){
         List<UserDTO> followingList = new ArrayList<>();
-        String userId = "US0001";
+        String userId = "US0001"; //Sửa lại chổ này nha Thức ơi
         followingList = userDao.getFollowing(userId);
         return !followingList.isEmpty() ?
                     Response.ok(followingList, MediaType.APPLICATION_JSON).build() :
@@ -37,7 +37,7 @@ public class Following {
     @Path("countfollowing")
     public Response countFollowing(@HeaderParam("authtoken") String tokenString){
         int numberoffolowing = 0;
-        String userId = "US0001";
+        String userId = "US0001"; //Sửa lại chổ này nha Thức ơi
         numberoffolowing = userDao.countFollowing(userId);
         return Response.ok(numberoffolowing, MediaType.APPLICATION_JSON).build();
     }
@@ -46,7 +46,7 @@ public class Following {
     @Path("follower")
     public Response getFollower(@HeaderParam("authtoken") String tokenString){
         List<UserDTO> followerList = new ArrayList<>();
-        String userId = "US0001";
+        String userId = "US0001"; //Sửa lại chổ này nha Thức ơi
         followerList = userDao.getFollower(userId);
         return !followerList.isEmpty() ?
                     Response.ok(followerList, MediaType.APPLICATION_JSON).build() :
@@ -57,7 +57,7 @@ public class Following {
     @Path("countfollower")
     public Response countFollower(@HeaderParam("authtoken") String tokenString){
         int numberoffolower = 0;
-        String userId = "US0001";
+        String userId = "US0001";//Sửa lại chổ này nha Thức ơi
         numberoffolower = userDao.countFollower(userId);
         return Response.ok(numberoffolower, MediaType.APPLICATION_JSON).build();
     }
@@ -67,7 +67,7 @@ public class Following {
     @Path("{user_id}")
     public Response followUser(@HeaderParam("authtoken") String tokenString,@PathParam("user_id") String userId){
         boolean checkFollow = false;
-        String loginUser = "US0001";
+        String loginUser = "US0001"; //Sửa lại chổ này nha Thức ơi
         checkFollow = userDao.followUser(loginUser,userId);
         return checkFollow ? 
                 Response.status(Response.Status.NO_CONTENT).build():
@@ -78,7 +78,7 @@ public class Following {
     @Path("{user_id}")
     public Response unfollowUser(@HeaderParam("authtoken") String tokenString,@PathParam("user_id") String userId){
         boolean checkFollow = false;
-        String loginUser = "US0001";
+        String loginUser = "US0001"; //Sửa lại chổ này nha Thức ơi
         checkFollow = userDao.unfollowUser(loginUser,userId);
         return checkFollow ? 
                 Response.status(Response.Status.NO_CONTENT).build():
@@ -89,7 +89,7 @@ public class Following {
     @Path("check/{user_id}")
     public Response checkFollow(@HeaderParam("authtoken") String tokenString,@PathParam("user_id") String userId){
         boolean checkFollow = false;
-        String loginUserId = "US0001";
+        String loginUserId = "US0001"; //Sửa lại chổ này nha Thức ơi
         checkFollow = userDao.checkFollow(loginUserId,userId);
         return Response.ok(checkFollow, MediaType.APPLICATION_JSON).build();
     }
