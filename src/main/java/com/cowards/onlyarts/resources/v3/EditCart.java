@@ -13,7 +13,6 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Cookie;
 import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.NewCookie;
 import jakarta.ws.rs.core.Response;
 
 /**
@@ -43,12 +42,8 @@ public class EditCart {
             } else {
                 value = artworkId;
             }
-            Cookie c = new Cookie("cart", value, "/", "") {
-            };
-            NewCookie cart = new NewCookie(c) {
-            };
             CartDTO cartDTO = cartDao.get(value);
-            return Response.ok(cartDTO).cookie(cart).build();
+            return Response.ok(cartDTO).build();
         } catch (Exception e) {
             return Response.ok(e).build();
         }
@@ -76,12 +71,8 @@ public class EditCart {
                     value = temp;
                 }
             }
-            Cookie c = new Cookie("cart", value, "/", "") {
-            };
-            NewCookie cart = new NewCookie(c) {
-            };
             CartDTO cartDTO = cartDao.get(value);
-            return Response.ok(cartDTO).cookie(cart).build();
+            return Response.ok(cartDTO).build();
         } catch (Exception e) {
             return Response.ok(e).build();
         }
