@@ -22,7 +22,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CartDTO {
-    
+
     private HashMap<String, OrderDetailsDTO> orderDetails = new HashMap<>();
     private String paymentMethod;
     private float totalPrice;

@@ -5,7 +5,7 @@
 package com.cowards.onlyarts.repositories.artworks;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,11 +60,6 @@ public class ArtworkDTO implements Serializable {
     private String cateId;
 
     /**
-     * Privacy level of the artwork (e.g., public, private).
-     */
-    private int privacy;
-
-    /**
      * Name of the artwork.
      */
     private String name;
@@ -77,7 +72,7 @@ public class ArtworkDTO implements Serializable {
     /**
      * Path or URL to the image representing the artwork.
      */
-    private byte[] artworkImage;
+    private String artworkImage;
 
     /**
      * Price of the artwork.
@@ -87,10 +82,10 @@ public class ArtworkDTO implements Serializable {
     /**
      * Date when the artwork was released or created.
      */
-    private Timestamp releasedDate;
+    private Date releasedDate;
 
     /**
      * Status of the artwork (e.g., active, inactive).
      */
-    private String status;
+    private int status;
 }

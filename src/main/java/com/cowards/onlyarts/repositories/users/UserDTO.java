@@ -1,6 +1,6 @@
 package com.cowards.onlyarts.repositories.users;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +21,9 @@ public class UserDTO {
     private String phone;
     private String email;
     private String address;
-    private Timestamp joinDate;
+    private Date joinDate;
     private String bio;
-    private String status;
+    private int status;
     private String password;
+    private String avatar;
 }

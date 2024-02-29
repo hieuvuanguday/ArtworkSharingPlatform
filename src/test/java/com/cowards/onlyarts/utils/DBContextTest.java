@@ -1,5 +1,6 @@
 package com.cowards.onlyarts.utils;
 
+import com.cowards.onlyarts.core.DBContext;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import static org.junit.jupiter.api.Assertions.assertEquals;

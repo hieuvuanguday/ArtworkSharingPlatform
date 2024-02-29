@@ -4,28 +4,40 @@
  */
 package com.cowards.onlyarts.services;
 
-import com.cowards.onlyarts.utils.DBContext;
-import java.sql.Connection;
+import com.cowards.onlyarts.repositories.cart.CartDTO;
+import com.cowards.onlyarts.repositories.orderDetails.OrderDetailsDTO;
+import java.util.HashMap;
 
 /**
  *
  * @author Admin
  */
 public class CartDAO {
-    
-    private final Connection conn = DBContext.getInstance();
-    
+
     private static CartDAO instance;
-    
+
     private CartDAO() {
     }
-    
+
     public static CartDAO getInstance() {
         if (instance == null) {
             instance = new CartDAO();
         }
         return instance;
     }
-    
-    
+
+    public CartDTO get(String artworkId) {
+        CartDTO cartDTO = new CartDTO();
+        HashMap<String, OrderDetailsDTO> orderDetails = new HashMap<>();
+        String[] split = artworkId.split("-");
+
+        for (String string : split) {
+            OrderDetailsDTO orderDetailsDTO = new OrderDetailsDTO();
+            orderDetailsDTO.setArtworkId(string);
+            orderDetails.put(string, orderDetailsDTO);
+        }
+
+        cartDTO.setOrderDetails(orderDetails);
+        return cartDTO;
+    }
 }

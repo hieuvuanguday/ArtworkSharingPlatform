@@ -5,7 +5,7 @@
 package com.cowards.onlyarts.services;
 
 import com.cowards.onlyarts.repositories.artworks.ArtworkDTO;
-import com.cowards.onlyarts.utils.DBContext;
+import com.cowards.onlyarts.core.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class ArtworkDAO {
 
     private static final String GETONE = "SELECT * FROM Artworks WHERE artwork_id = ?";
-    private static final String UPDATE = "UPDATE Artworks SET cate_id = ?, privacy = ?, name = ?, description = ?, "
+    private static final String UPDATE = "UPDATE Artworks SET cate_id = ?, name = ?, description = ?, "
             + "artwork_image = ?, price = ?, status = ? WHERE artwork_id = ?";
     private static final String DELETE = "DELETE FROM Artworks WHERE artwork_id = ?";
     private static final String GETALL = "SELECT * FROM Artworks";
@@ -54,13 +54,12 @@ public class ArtworkDAO {
                 artworkDTO.setArtworkId(rs.getString(1));
                 artworkDTO.setOwnerId(rs.getString(2));
                 artworkDTO.setCateId(rs.getString(3));
-                artworkDTO.setPrivacy(rs.getInt(4));
-                artworkDTO.setName(rs.getString(5));
-                artworkDTO.setDescription(rs.getString(6));
-                artworkDTO.setArtworkImage(rs.getBytes(7));
-                artworkDTO.setPrice(rs.getFloat(8));
-                artworkDTO.setReleasedDate(rs.getTimestamp(9));
-                artworkDTO.setStatus(rs.getString(10));
+                artworkDTO.setName(rs.getString(4));
+                artworkDTO.setDescription(rs.getString(5));
+                artworkDTO.setArtworkImage(rs.getString(6));
+                artworkDTO.setPrice(rs.getFloat(7));
+                artworkDTO.setReleasedDate(rs.getDate(8));
+                artworkDTO.setStatus(rs.getInt(9));
             }
         } catch (SQLException e) {
             Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Exception found on getOne(String id) method", e);
@@ -81,13 +80,12 @@ public class ArtworkDAO {
         try {
             stm = conn.prepareStatement(UPDATE);
             stm.setString(1, artworkDTO.getCateId());
-            stm.setInt(2, artworkDTO.getPrivacy());
-            stm.setString(3, artworkDTO.getName());
-            stm.setString(4, artworkDTO.getDescription());
-            stm.setBytes(5, artworkDTO.getArtworkImage());
-            stm.setFloat(6, artworkDTO.getPrice());
-            stm.setString(7, artworkDTO.getStatus());
-            stm.setString(8, artworkDTO.getArtworkId());
+            stm.setString(2, artworkDTO.getName());
+            stm.setString(3, artworkDTO.getDescription());
+            stm.setString(4, artworkDTO.getArtworkImage());
+            stm.setFloat(5, artworkDTO.getPrice());
+            stm.setInt(6, artworkDTO.getStatus());
+            stm.setString(7, artworkDTO.getArtworkId());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(ArtworkDAO.class.getName()).log(Level.SEVERE, "Exception found on update(ArtworkDTO artworkDTO) method", e);
@@ -121,7 +119,7 @@ public class ArtworkDAO {
         }
     }
 
-    public List getAll() {
+    public List<ArtworkDTO> getAll() {
         PreparedStatement stm = null;
         ResultSet rs = null;
         List<ArtworkDTO> list = new ArrayList<>();
@@ -133,13 +131,12 @@ public class ArtworkDAO {
                 artworkDTO.setArtworkId(rs.getString(1));
                 artworkDTO.setOwnerId(rs.getString(2));
                 artworkDTO.setCateId(rs.getString(3));
-                artworkDTO.setPrivacy(rs.getInt(4));
-                artworkDTO.setName(rs.getString(5));
-                artworkDTO.setDescription(rs.getString(6));
-                artworkDTO.setArtworkImage(rs.getBytes(7));
-                artworkDTO.setPrice(rs.getFloat(8));
-                artworkDTO.setReleasedDate(rs.getTimestamp(9));
-                artworkDTO.setStatus(rs.getString(10));
+                artworkDTO.setName(rs.getString(4));
+                artworkDTO.setDescription(rs.getString(5));
+                artworkDTO.setArtworkImage(rs.getString(6));
+                artworkDTO.setPrice(rs.getFloat(7));
+                artworkDTO.setReleasedDate(rs.getDate(8));
+                artworkDTO.setStatus(rs.getInt(9));
                 list.add(artworkDTO);
             }
         } catch (SQLException e) {
@@ -156,7 +153,7 @@ public class ArtworkDAO {
         return list;
     }
 
-    public List getAll(String userId) {
+    public List<ArtworkDTO> getAll(String userId) {
         PreparedStatement stm = null;
         ResultSet rs = null;
         List<ArtworkDTO> list = new ArrayList<>();
@@ -169,13 +166,12 @@ public class ArtworkDAO {
                 artworkDTO.setArtworkId(rs.getString(1));
                 artworkDTO.setOwnerId(rs.getString(2));
                 artworkDTO.setCateId(rs.getString(3));
-                artworkDTO.setPrivacy(rs.getInt(4));
-                artworkDTO.setName(rs.getString(5));
-                artworkDTO.setDescription(rs.getString(6));
-                artworkDTO.setArtworkImage(rs.getBytes(7));
-                artworkDTO.setPrice(rs.getFloat(8));
-                artworkDTO.setReleasedDate(rs.getTimestamp(9));
-                artworkDTO.setStatus(rs.getString(10));
+                artworkDTO.setName(rs.getString(4));
+                artworkDTO.setDescription(rs.getString(5));
+                artworkDTO.setArtworkImage(rs.getString(6));
+                artworkDTO.setPrice(rs.getFloat(7));
+                artworkDTO.setReleasedDate(rs.getDate(8));
+                artworkDTO.setStatus(rs.getInt(9));
                 list.add(artworkDTO);
             }
         } catch (SQLException e) {

@@ -4,7 +4,7 @@
  */
 package com.cowards.onlyarts.repositories.orders;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,8 +24,8 @@ public class OrdersDTO {
 
     private String orderId;
     private String userId;
-    private String status;
+    private int status;
     private String paymentMethod;
-    private Timestamp orderTime;
+    private Date orderTime;
     private float totalPrice;
 }

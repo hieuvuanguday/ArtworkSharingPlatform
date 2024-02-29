@@ -1,4 +1,4 @@
-package com.cowards.onlyarts.utils;
+package com.cowards.onlyarts.core;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

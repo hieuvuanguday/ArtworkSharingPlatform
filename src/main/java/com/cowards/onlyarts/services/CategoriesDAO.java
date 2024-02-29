@@ -4,7 +4,7 @@
  */
 package com.cowards.onlyarts.services;
 
-import com.cowards.onlyarts.utils.DBContext;
+import com.cowards.onlyarts.core.DBContext;
 import java.sql.Connection;
 
 /**

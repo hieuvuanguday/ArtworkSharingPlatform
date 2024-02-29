@@ -18,7 +18,7 @@ import java.util.HashMap;
  *
  * @author Dat
  */
-@Path("/v3/dashboard")
+@Path("/v3/admin/dashboard")
 public class ViewDashboard {
 
     private static final ArtworkDAO artworkDAO = ArtworkDAO.getInstance();
@@ -32,8 +32,9 @@ public class ViewDashboard {
             int countUser = userDAO.getAll("CT").size() + userDAO.getAll("CR").size();
             int countArtwork = artworkDAO.getAll().size();
             int countOrder = ordersDAO.getAll().size();
-            float profit = ordersDAO.currentMonthProfit();
-            HashMap result = new HashMap();
+            int profit = Math.round(ordersDAO.currentMonthProfit());
+            
+            HashMap<String, Integer> result = new HashMap<>();
             result.put("countUser", countUser);
             result.put("countArtwork", countArtwork);
             result.put("countOrder", countOrder);

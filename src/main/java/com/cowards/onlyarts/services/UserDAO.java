@@ -1,7 +1,7 @@
 package com.cowards.onlyarts.services;
 
 import com.cowards.onlyarts.repositories.users.UserDTO;
-import com.cowards.onlyarts.utils.DBContext;
+import com.cowards.onlyarts.core.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +33,7 @@ public class UserDAO {
         return instance;
     }
 
-    public List getAll(String roleId) {
+    public List<UserDTO> getAll(String roleId) {
         PreparedStatement stm = null;
         ResultSet rs = null;
         UserDTO userDTO = new UserDTO();
@@ -50,9 +50,9 @@ public class UserDAO {
                 userDTO.setPhone(rs.getString(5));
                 userDTO.setEmail(rs.getString(6));
                 userDTO.setAddress(rs.getString(7));
-                userDTO.setJoinDate(rs.getTimestamp(8));
+                userDTO.setJoinDate(rs.getDate(8));
                 userDTO.setBio(rs.getString(9));
-                userDTO.setStatus(rs.getString(10));
+                userDTO.setStatus(rs.getInt(10));
                 userDTO.setPassword(rs.getString(11));
                 list.add(userDTO);
             }

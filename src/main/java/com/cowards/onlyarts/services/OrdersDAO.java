@@ -5,7 +5,7 @@
 package com.cowards.onlyarts.services;
 
 import com.cowards.onlyarts.repositories.orders.OrdersDTO;
-import com.cowards.onlyarts.utils.DBContext;
+import com.cowards.onlyarts.core.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +41,7 @@ public class OrdersDAO {
         return instance;
     }
 
-    public List getAll() {
+    public List<OrdersDTO> getAll() {
         PreparedStatement stm = null;
         ResultSet rs = null;
         OrdersDTO ordersDTO = new OrdersDTO();
@@ -52,14 +52,14 @@ public class OrdersDAO {
             while (rs.next()) {
                 ordersDTO.setOrderId(rs.getString(1));
                 ordersDTO.setUserId(rs.getString(2));
-                ordersDTO.setStatus(rs.getString(3));
+                ordersDTO.setStatus(rs.getInt(3));
                 ordersDTO.setPaymentMethod(rs.getString(4));
-                ordersDTO.setOrderTime(rs.getTimestamp(5));
+                ordersDTO.setOrderTime(rs.getDate(5));
                 ordersDTO.setTotalPrice(rs.getFloat(6));
                 list.add(ordersDTO);
             }
         } catch (SQLException e) {
-            Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, "Exception found on count() method", e);
+            Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, "Exception found on getAll() method", e);
         } finally {
             if (stm != null) {
                 try {
@@ -102,7 +102,7 @@ public class OrdersDAO {
             stm = conn.prepareStatement(INSERT);
             stm.setString(1, ordersDTO.getOrderId());
             stm.setString(2, ordersDTO.getUserId());
-            stm.setString(3, ordersDTO.getStatus());
+            stm.setInt(3, ordersDTO.getStatus());
             stm.setString(4, ordersDTO.getPaymentMethod());
             stm.setFloat(5, ordersDTO.getTotalPrice());
             stm.execute();
@@ -131,9 +131,9 @@ public class OrdersDAO {
             while (rs.next()) {
                 ordersDTO.setOrderId(rs.getString(1));
                 ordersDTO.setUserId(rs.getString(2));
-                ordersDTO.setStatus(rs.getString(3));
+                ordersDTO.setStatus(rs.getInt(3));
                 ordersDTO.setPaymentMethod(rs.getString(4));
-                ordersDTO.setOrderTime(rs.getTimestamp(5));
+                ordersDTO.setOrderTime(rs.getDate(5));
                 ordersDTO.setTotalPrice(rs.getFloat(6));
             }
         } catch (SQLException e) {
@@ -149,4 +149,36 @@ public class OrdersDAO {
         }
         return ordersDTO;
     }
+    
+    public List<OrdersDTO> getAll(String userId) {
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        OrdersDTO ordersDTO = new OrdersDTO();
+        List<OrdersDTO> list = new ArrayList<>();
+        try {
+            stm = conn.prepareStatement(GETALL + "WHERE user_id = ?");
+            stm.setString(1, userId);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                ordersDTO.setOrderId(rs.getString(1));
+                ordersDTO.setUserId(rs.getString(2));
+                ordersDTO.setStatus(rs.getInt(3));
+                ordersDTO.setPaymentMethod(rs.getString(4));
+                ordersDTO.setOrderTime(rs.getDate(5));
+                ordersDTO.setTotalPrice(rs.getFloat(6));
+                list.add(ordersDTO);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, "Exception found on getAll(String userId) method", e);
+        } finally {
+            if (stm != null) {
+                try {
+                    stm.close();
+                } catch (SQLException e) {
+                    Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, "Error closing PrepareStatement", e);
+                }
+            }
+        }
+        return list;
+    } 
 }

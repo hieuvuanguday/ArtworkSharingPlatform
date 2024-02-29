@@ -17,8 +17,8 @@ import java.util.List;
  *
  * @author Admin
  */
-@Path("/v3/admin/orders/statistics")
-public class ViewOrderStatistics {
+@Path("/v3/orders/history")
+public class ViewOrderStatus {
 
     private static final OrdersDAO ordersDao = OrdersDAO.getInstance();
 
@@ -26,7 +26,9 @@ public class ViewOrderStatistics {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrders() {
         try {
-            List<OrdersDTO> list = ordersDao.getAll();
+            String userId = "US0002"; //fix
+            
+            List<OrdersDTO> list = ordersDao.getAll(userId);
             return Response.ok(list).build();
         } catch (Exception e) {
             return Response.ok(e).build();

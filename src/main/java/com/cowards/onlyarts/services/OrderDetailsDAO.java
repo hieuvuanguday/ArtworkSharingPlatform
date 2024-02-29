@@ -5,7 +5,7 @@
 package com.cowards.onlyarts.services;
 
 import com.cowards.onlyarts.repositories.orderDetails.OrderDetailsDTO;
-import com.cowards.onlyarts.utils.DBContext;
+import com.cowards.onlyarts.core.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
