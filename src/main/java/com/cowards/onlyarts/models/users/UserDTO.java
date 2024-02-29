@@ -13,15 +13,17 @@ import lombok.ToString;
 @Setter
 @ToString
 public class UserDTO {
-
+    
     private String userId;
     private String roleId;
     private String firstName;
     private String lastName;
+    private String avatar;
     private String phone;
     private String email;
     private String address;
     private Date joinDate;
     private String bio;
-    private String status;
+    private int status;
+    private String password;
 }
